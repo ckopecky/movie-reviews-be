@@ -1,0 +1,28 @@
+{
+  "name": "movie-reviews-be",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ckopecky/movie-reviews-be.git",
+  "author": "\"ckopecky\" <kopecky12112@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cookie-session": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "knex": "^0.20.13",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-twitter": "^1.0.4",
+    "pg": "^8.0.2",
+    "sqlite3": "^4.1.1",
+    "stripe": "^8.39.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  },
+  "engines": {
+    "node": ">=10.15.1",
+    "npm": ">=6.4.1"
+  }
+}
