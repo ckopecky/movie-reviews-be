@@ -1,13 +1,22 @@
+const faker = require('faker')
 
-exports.seed = function(knex) {
+let bools = [ true, false ];
+exports.seed = (knex) => {
   // Deletes ALL existing entries
-  return knex('table_name').del()
+  return knex('users').del()
     .then(function () {
-      // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
-      ]);
+      let users = [];
+      for(let i = 0; i <= 50; i++) {
+        let twitterId = faker.random.uuid()
+        let googleId = faker.random.uuid();
+        let stripeId = faker.random.uuid();
+        let username = faker.internet.userName();
+        let name = faker.name.firstName() + " " + faker.name.lastName();
+        let email = faker.internet.email();
+        let premium_user = Math.floor(Math.random() * bools.length);
+        let photo = faker.internet.url();
+        users.push({ googleId, twitterId, stripeId, username, name, email, premium_user, photo})
+      }
+      return knex('users').insert(users);
     });
 };

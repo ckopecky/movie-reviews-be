@@ -1,6 +1,6 @@
 
 exports.up = function(knex, Promise) {
-    return knex.schemas.createTable('users', users => {
+    return knex.schema.createTable('users', users => {
         users
             .increments('id')
         users
