@@ -1,0 +1,9 @@
+{
+  "name": "knex",
+  "version": "1.0.0",
+  "main": "knexfile.js",
+  "license": "MIT",
+  "dependencies": {
+    "knexfile": "file:./knex"
+  }
+}
