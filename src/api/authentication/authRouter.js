@@ -36,11 +36,11 @@ logged in.
 
 const current_user = async (req, res) => {
     if(!req.user || req.user && !req.user.id) {
-        res.status(400).send({ error: 'You are not logged in' });
+        res.status(400).json({ error: 'You are not logged in' });
     } else {
         const user = await usersDb.getUsersById(req.user.id);
         
-        user ? res.status(200).send(req.user) : res.status(404).send({Error: "No user found"});
+        user ? res.status(200).json(req.user) : res.status(404).json({Error: "No user found"});
     }
 }
 
