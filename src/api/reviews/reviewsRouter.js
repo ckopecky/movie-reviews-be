@@ -38,10 +38,10 @@ const getReviewById = async (req, res) => {
     }
 };
 
-router.route('/')
+router.route('/reviews')
     .get(getAllReviews)
 
-router.route('/:id')
+router.route('/reviews/:id')
     .get(getReviewById);
 
 export default router;

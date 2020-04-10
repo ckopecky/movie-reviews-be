@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import passport from 'passport';
-import { Strategy as GoogleStrategy } from ('passport-google-oauth20');
+import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import usersDb from '../api/authentication/authHelper';
 
 // serializeUser is used to stuff a piece of info into a cookie
@@ -19,7 +19,7 @@ const googleStrategy = new GoogleStrategy({
     callbackURL: process.env.GOOGLE_CALLBACK_URL,
     proxy: true,
     userProfileURL: process.env.USER_PROFILE_URL
-}, createSlashRetrieveUser);
+}, () => createSlashRetrieveUser());
 
 
 const createSlashRetrieveUser = async (token, tokenSecret, profile, done) => {

@@ -10,7 +10,7 @@ requests all the users in the users database)
 ==============================================
 */
 
-const getUsers = async (req, res) => {
+const fetchUsers = async (req, res) => {
     try {
         const users = await getUsers();
         if(users && users.length > 0) {
@@ -19,7 +19,7 @@ const getUsers = async (req, res) => {
             res.status(404).json({Error: "users not found"});
         }
     } catch (error) {
-        res.status(500).json({Err: "Server error", error});
+        res.status(500).json({Err:  error.message});
     }
 };
 
@@ -33,7 +33,7 @@ const getUserId = async (req, res) => {
             res.status(404).json({Error: "No user data found"});
         }
     } catch (error) {
-        res.status(500).json({Error: error});
+        res.status(500).json({Error: error.message});
     }
 };
 
@@ -71,7 +71,7 @@ const updateUser = async (req, res) => {
             res.status(400).json({Error: "Request body must include email, name and username"});
         }
     } catch (error) {
-        res.status(500).json({Error: error});
+        res.status(500).json({Error: error.message});
     }
 };
 
@@ -86,14 +86,14 @@ const deleteUser = async (req, res) => {
             res.status(404).json({ message: 'No records found to delete '});
         }
     } catch (error) {
-        res.status(500).json(error);
+        res.status(500).json(error.message);
     }
 }
 
 
 
 router.route("/users")
-    .get(getUsers)
+    .get(fetchUsers)
     .post(postUser);
 
 

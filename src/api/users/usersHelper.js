@@ -27,4 +27,4 @@ const remove = (id) => {
         .del();
 }
 
-export default { getUsers, getUsersById, update, insert, remove };
+export { getUsers, getUsersById, update, insert, remove };

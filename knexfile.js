@@ -1,17 +1,19 @@
 require('dotenv').config();
 
+
+
 module.exports  = {
     development: {
         client: 'sqlite3',
         connection: {
-            filename: '../src/data/moviereviews.sqlite3'
+            filename: './src/data/moviereview.db'
         },
         useNullAsDefault: true,
         migrations: { 
-            directory: '../src/data/migrations/development' 
+            directory: './src/data/migrations/development' 
         },
         seeds: { 
-            directory: '../src/data/seeds/development' 
+            directory: './src/data/seeds/development' 
         }
     },
     
@@ -25,10 +27,8 @@ module.exports  = {
             },
         migrations: {
             tableName: 'knex_migrations',
-            directory: '../src/data/migrations/development'
+            directory: './src/data/migrations/development'
         },
-        seeds: { 
-            directory: '../src/data/seeds/production' 
-        }
+
     }
 };

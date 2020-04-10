@@ -1,8 +1,10 @@
-import 'dotenv/config';
+require('dotenv').config()
 const env = process.env.NODE_ENV || 'development';
-import knex from 'knex';
-import knexfile from 'knexfile';
+const knex = require('knex');
+const knexfile = require('../../knexfile')[env];
+const myknex = knex(knexfile);
 
-const myknex = knex(knexfile[env]);
 
-export default myknex;
+
+
+module.exports = myknex;

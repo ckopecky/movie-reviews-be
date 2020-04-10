@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import express from express;
+import express from 'express';
 import cookieSession from 'cookie-session';
 import passport from 'passport';
 import cors from 'cors';
