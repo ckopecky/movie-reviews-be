@@ -5,6 +5,9 @@
   "repository": "https://github.com/ckopecky/movie-reviews-be.git",
   "author": "\"ckopecky\" <kopecky12112@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "nodemon --exec babel-node src/index.js"
+  },
   "dependencies": {
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
@@ -19,6 +22,9 @@
     "stripe": "^8.39.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.5",
     "nodemon": "^2.0.3"
   },
   "engines": {
