@@ -5,18 +5,7 @@ exports.seed = (knex) => {
   // Deletes ALL existing entries
   return knex('users').del()
     .then(function () {
-      let users = [];
-      for(let i = 0; i <= 50; i++) {
-        let twitterId = faker.random.uuid()
-        let googleId = faker.random.uuid();
-        let stripeId = faker.random.uuid();
-        let username = faker.internet.userName();
-        let name = faker.name.firstName() + " " + faker.name.lastName();
-        let email = faker.internet.email();
-        let premium_user = Math.floor(Math.random() * bools.length);
-        let photo = faker.internet.url();
-        users.push({ googleId, twitterId, stripeId, username, name, email, premium_user, photo})
-      }
+      let users = [{googleId: '108487946027926573896', twitterId: null, stripeId: 'cus_H65SRS6Bi9oAdi', username: 'kopecky12112@gmail.com', name: 'Christina Kopecky', email: 'kopecky12112@gmail.com', premium_user: 1, photo: 'https://lh5.googleusercontent.com/-0I-5ybxkgMM/AAAAAAAAAAI/AAAAAAAAAAA/AAKWJJN4KFRuVTzLp8sQcNIjtvbJVb8aAg/photo.jpg'}];
       return knex('users').insert(users);
     });
 };

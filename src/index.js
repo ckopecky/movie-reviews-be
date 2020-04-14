@@ -14,20 +14,21 @@ const port = process.env.PORT || 5000;
 
 middleware(server);
 
-const isUserAuthenticated = (req, res, next) => {
+function isUserAuthenticated (req, res, next) {
     if((req.isAuthenticated(), { withCredentials: true})) {
-        return next();
+        return next()
     } else {
         res.redirect('/');
     }
 }
 
 server.get('/', (req, res) =>
-  res.status(200).send({ Success: 'Sanity check is working...' })
+  res.status(200).json({ Success: 'Sanity check is working...' })
 );
 
 server.get('/sanityauth', isUserAuthenticated, (req, res) => {
-  res.status(200).send({ Success: 'You have the secret!' });
+
+  res.status(200).json({ Success: 'You have the secret!' });
 });
 
 server.use('/auth', authRouter);

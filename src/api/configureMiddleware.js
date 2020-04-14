@@ -6,13 +6,15 @@ import cors from 'cors';
 
 const corsOptions = {
     credentials: true,
-    origin: '*'
+    origin: ['http://localhost:3000', 'https://cineview.netlify.com']
+
 }
 
 //list of middleware configured to our Express server
 
 export const middleware = (server)  => {
     server.use(express.json());
+    server.use(cors(corsOptions));
     server.use(
         cookieSession({
             name: 'cineview',
@@ -22,5 +24,4 @@ export const middleware = (server)  => {
     );
     server.use(passport.initialize());
     server.use(passport.session());
-    server.use(cors(corsOptions));
 }

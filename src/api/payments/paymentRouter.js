@@ -1,8 +1,5 @@
-import stripe from 'stripe';
-stripe(process.env.STRIPE_SECRET_KEY);
-import express from 'express';
-const router = express.Router();
-
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
+const router = require('express').Router();
 
 
 // First, we create our customer. we use the stripe API will return a customer
@@ -19,7 +16,7 @@ router.post('/payment', function(req, res) {
   const { email } = req.body.token; // the customer's email
   const { subscription } = req.body;
   let plan;
-  // console.log("req.body", req.body);
+  console.log("req.body", req.body);
 
   // the type of plan. either one year subscription or a one month subscription
   // This plan is a string was passed from the PremiumView component to the PayButton component. Then
@@ -32,15 +29,18 @@ router.post('/payment', function(req, res) {
     // the first argument creates our new customer
     err
       ? res.send({ createdCustomer: false }) // if there's an error in creating our customer
-      : stripe.subscriptions // Successfully created customer. Now we can create a sub for our customer
+      : stripe.subscriptions
           .create(
             {
               customer: customer.id,
               items: [{ plan }] // the value of plan is the id of the plan
             },
-            (err, subscription) => {
-              // console.log('subscription \n', su`bscription);
-              err
+            function (err, subscription) 
+            {
+              console.log(err)
+              console.log('subscription \n', subscription);
+              console.log('customer \n', customer);
+              return err
                 ? res.send({ createdSubscription: false })
                 : res.send({
                     createdCustomer: true,
@@ -54,7 +54,7 @@ router.post('/payment', function(req, res) {
 
 // Gets customer's plan using using stripeId
 router.post('/customer/plan', function(req, res) {
-  // console.log("customer req \n", req.headers);
+  console.log("customer req \n", req.headers);
   const { stripeId } = req.body;
 
   stripe.customers.retrieve(stripeId, function(error, customer) {
@@ -69,7 +69,7 @@ router.post('/customer/plan', function(req, res) {
           premium: false
         });
       }
-      // console.log("customer plan \n", customer)
+      console.log("customer plan \n", customer)
       return res.status(200).send({
         customer: customer.subscriptions.data[0].items.data[0].plan,
         premium: true
@@ -81,7 +81,7 @@ router.post('/customer/plan', function(req, res) {
 
 // Gets customer's status; "premium: true" if customer has active subscription
 router.post('/customer/premium', function(req, res) {
-  // console.log("customer req \n", req.headers);
+  console.log("customer req \n", req.headers);
   const { stripeid } = req.body;
   if (!stripeid) {
     res.status(400).send({
@@ -102,7 +102,7 @@ router.post('/customer/premium', function(req, res) {
           error: 'Unable to get customer'
         });
       } else {
-        // console.log("customer plan/n", customer)
+        console.log("customer plan/n", customer)
         res.send({
           premium: customer.subscriptions.data[0].items.data[0].plan.active
         });
