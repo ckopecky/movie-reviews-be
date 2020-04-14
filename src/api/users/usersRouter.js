@@ -61,7 +61,7 @@ const updateUser = async (req, res) => {
         const count = await update(id, { email, name, username});
 
         if(count) {
-            const user = await usersDb.getUsersById(id);
+            const user = await getUsersById(id);
             if(user) {
                 res.status(201).json(user);
             } else {
