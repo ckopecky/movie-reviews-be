@@ -12,7 +12,7 @@ exports.seed = (knex) => {
         let userId = 1;
         let reviewer = 'kopecky12112@gmail.com';
         let textBody = faker.lorem.paragraph(7);
-        let rating = faker.random.number(5);
+        let rating = faker.random.number({min: 1, max: 5});
         movieReviews.push({movieId, userId, reviewer, textBody, rating});
       }
       return knex('movieReviews').insert(movieReviews);
