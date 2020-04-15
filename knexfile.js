@@ -22,8 +22,9 @@ module.exports  = {
         connection: process.env.DATABASE_URL,
         useNullAsDefault: true,
             pool: {
-                min: 2,
-                max: 10
+                afterCreate: function (conn, cb) {
+                    conn.run('PRAGMA foreign_keys = ON', cb)
+                  }
             },
         migrations: {
             tableName: 'knex_migrations',
