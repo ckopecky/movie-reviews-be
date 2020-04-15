@@ -15,6 +15,7 @@ router.get('/logout', (req, res) => {
 router.get('/current_user', async (req, res) => {
     if(!req.user || req.user && !req.user.id) {
         res.status(400).json({ error: 'You are not logged in' });
+        res.redirect('/')
     } else {
         const user = await getUsersById(req.user.id);
         
