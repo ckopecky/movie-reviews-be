@@ -1,1 +1,1 @@
-web: node --exec babel-node src/index.js
+web: yarn build && node ./build/index.js
