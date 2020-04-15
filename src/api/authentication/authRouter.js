@@ -37,7 +37,9 @@ router.get('/google', passport.authenticate('google', {
 }));
 
 //cb
-router.get('/google/callback', passport.authenticate('google', { failureRedirect: failureRedirect, successRedirect: successfulRedirect }));
+router.get('/google/callback', passport.authenticate('google', 
+    {successMessage: "Successfully logged in", successRedirect: successfulRedirect, failureRedirect, failureMessage: "Failed to log in"}
+));
 
 //TODO: implement TWITTER and LOCAL STRATEGY
 export default router;
