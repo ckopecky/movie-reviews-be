@@ -21,13 +21,13 @@ router.get('/logout', (req, res) => {
 
 //current user
 router.get('/current_user', async (req, res) => {
-    if(!req.user || req.user && !req.user.id) {
-        res.status(400).json({ error: 'You are not logged in' });
-        res.redirect('/')
-    } else {
+    try {
         const user = await getUsersById(req.user.id);
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(404).json({Error: "No user found", error});
+    } {
         
-        user ? res.status(200).json(req.user) : res.status(404).json({Error: "No user found"});
     }
 });
 
