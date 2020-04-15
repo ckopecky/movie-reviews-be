@@ -14,6 +14,11 @@ module.exports  = {
         },
         seeds: { 
             directory: './src/data/seeds/development' 
+        },
+        pool: {
+            afterCreate: function (conn, cb) {
+                conn.run('PRAGMA foreign_keys = ON', cb)
+              }
         }
     },
     
@@ -22,9 +27,8 @@ module.exports  = {
         connection: process.env.DATABASE_URL,
         useNullAsDefault: true,
             pool: {
-                afterCreate: function (conn, cb) {
-                    conn.run('PRAGMA foreign_keys = ON', cb)
-                  }
+                min: 2,
+                max: 10
             },
         migrations: {
             tableName: 'knex_migrations',
