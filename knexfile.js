@@ -31,7 +31,7 @@ module.exports  = {
         },
         seeds: {
             tableName: 'knex_seeds',
-            directory: './src/data/migrations/development'
+            directory: './src/data/seeds/development'
         }
 
     }
