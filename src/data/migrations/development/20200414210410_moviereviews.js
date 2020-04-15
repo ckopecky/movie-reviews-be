@@ -1,11 +1,11 @@
 
 exports.up = function(knex, Promise) {
-    return knex.schema.createTable('movieReviews', movieReviews => {
-        movieReviews.increments('id');
-        movieReviews
+    return knex.schema.createTable('moviereviews', moviereviews => {
+        moviereviews.increments('id');
+        moviereviews
             .integer('movieId')
             .notNullable();
-        movieReviews
+        moviereviews
             .integer('userId')
             .unsigned()
             .notNullable()
@@ -13,26 +13,26 @@ exports.up = function(knex, Promise) {
             .inTable('users')
             .onDelete('cascade')
             .index();
-        movieReviews
+        moviereviews
             .string('reviewer')
             .notNullable()
             .references('email')
             .inTable('users')
             .onDelete('cascade')
-        movieReviews
+        moviereviews
             .text('textBody', 5000)
             .notNullable()
-        movieReviews
+        moviereviews
             .integer('rating')
-        movieReviews
+        moviereviews
             .timestamp('created_at')
             .defaultTo(knex.fn.now())
-        movieReviews
+        moviereviews
             .timestamp('updated_at')
             .defaultTo(knex.fn.now())
     });
 };
 
 exports.down = function(knex) {
-    return knex.schema.dropTableIfExists('movieReviews');
+    return knex.schema.dropTableIfExists('moviereviews');
 };
