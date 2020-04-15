@@ -13,6 +13,7 @@
     "dev": "nodemon --exec babel-node src/index.js"
   },
   "dependencies": {
+    "babel-preset-env": "^1.7.0",
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -30,7 +31,7 @@
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/node": "^7.8.7",
-    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-env": "^7.9.5", 
     "nodemon": "^2.0.3"
   },
   "engines": {
