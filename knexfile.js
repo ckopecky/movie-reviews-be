@@ -29,6 +29,10 @@ module.exports  = {
             tableName: 'knex_migrations',
             directory: './src/data/migrations/development'
         },
+        seeds: {
+            tableName: 'knex_seeds',
+            directory: './src/data/migrations/development'
+        }
 
     }
 };
