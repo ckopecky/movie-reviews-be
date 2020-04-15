@@ -16,7 +16,6 @@ router.post('/payment', function(req, res) {
   const { email } = req.body.token; // the customer's email
   const { subscription } = req.body;
   let plan;
-  console.log("req.body", req.body);
 
   // the type of plan. either one year subscription or a one month subscription
   // This plan is a string was passed from the PremiumView component to the PayButton component. Then
@@ -38,8 +37,7 @@ router.post('/payment', function(req, res) {
             function (err, subscription) 
             {
               console.log(err)
-              console.log('subscription \n', subscription);
-              console.log('customer \n', customer);
+          
               return err
                 ? res.send({ createdSubscription: false })
                 : res.send({
@@ -54,7 +52,6 @@ router.post('/payment', function(req, res) {
 
 // Gets customer's plan using using stripeId
 router.post('/customer/plan', function(req, res) {
-  console.log("customer req \n", req.headers);
   const { stripeId } = req.body;
 
   stripe.customers.retrieve(stripeId, function(error, customer) {
@@ -69,7 +66,6 @@ router.post('/customer/plan', function(req, res) {
           premium: false
         });
       }
-      console.log("customer plan \n", customer)
       return res.status(200).send({
         customer: customer.subscriptions.data[0].items.data[0].plan,
         premium: true
@@ -81,7 +77,6 @@ router.post('/customer/plan', function(req, res) {
 
 // Gets customer's status; "premium: true" if customer has active subscription
 router.post('/customer/premium', function(req, res) {
-  console.log("customer req \n", req.headers);
   const { stripeid } = req.body;
   if (!stripeid) {
     res.status(400).send({
@@ -102,7 +97,6 @@ router.post('/customer/premium', function(req, res) {
           error: 'Unable to get customer'
         });
       } else {
-        console.log("customer plan/n", customer)
         res.send({
           premium: customer.subscriptions.data[0].items.data[0].plan.active
         });

@@ -55,10 +55,10 @@ const postUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
     const { id } = req.params;
-    const { email, name, username } = req.body;
+    const changes = req.body;
 
     try {
-        const count = await update(id, { email, name, username});
+        const count = await update(id, changes);
 
         if(count) {
             const user = await getUsersById(id);
