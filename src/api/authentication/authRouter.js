@@ -5,6 +5,14 @@ import passport from 'passport';
 import { getUsers, getUsersById, update, remove, insert} from '../users/usersHelper';
 import { serverURL } from '../../services/helpers';
 
+
+const successfulRedirect = 
+process.env.NODE_ENV === "production" ?
+process.env.REDIRECT_URI_PROD : process.env.REDIRECT_URI_DEV;
+
+const failureRedirect = 
+process.env.NODE_ENV === 'production' ?
+process.env.REDIRECT_URI_PROD : process.env.REDIRECT_URI_DEV;
 //logout
 router.get('/logout', (req, res) => {
     req.logout();
@@ -29,7 +37,7 @@ router.get('/google', passport.authenticate('google', {
 }));
 
 //cb
-router.get('/google/callback', passport.authenticate('google', { failureRedirect: 'http://localhost:5000', successRedirect: process.env.REDIRECT_URI_DEV }));
+router.get('/google/callback', passport.authenticate('google', { failureRedirect: failureRedirect, successRedirect: successfulRedirect }));
 
 //TODO: implement TWITTER and LOCAL STRATEGY
 export default router;
