@@ -9,6 +9,9 @@
     "start": "nodemon --exec babel-node src/index.js"
   },
   "dependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.5",
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -24,9 +27,6 @@
     "stripe": "^8.39.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/node": "^7.8.7",
-    "@babel/preset-env": "^7.9.5",
     "nodemon": "^2.0.3"
   },
   "engines": {
