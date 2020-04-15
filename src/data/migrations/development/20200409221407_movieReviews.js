@@ -19,7 +19,6 @@ exports.up = function(knex, Promise) {
             .references('email')
             .inTable('users')
             .onDelete('cascade')
-            .index()
         movieReviews
             .text('textBody', 5000)
             .notNullable()
