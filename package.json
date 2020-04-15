@@ -13,6 +13,8 @@
     "dev": "nodemon --exec babel-node src/index.js"
   },
   "dependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
@@ -25,16 +27,22 @@
     "passport-google-oauth20": "^2.0.0",
     "passport-twitter": "^1.0.4",
     "pg": "^8.0.2",
+    "regenerator-runtime": "^0.13.5",
+    "rimraf": "^3.0.2",
     "sqlite3": "^4.1.1",
     "stripe": "^8.39.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
     "@babel/node": "^7.8.7",
     "nodemon": "^2.0.3"
   },
   "engines": {
     "node": ">=10.15.1",
     "npm": ">=6.4.1"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
   }
 }

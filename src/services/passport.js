@@ -2,6 +2,8 @@ import 'dotenv/config';
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import { findUserById, findUserByProfileId, createUser } from '../api/authentication/authHelper';
+import regeneratorRuntime from "regenerator-runtime";
+
 
 // serializeUser is used to stuff a piece of info into a cookie
 
