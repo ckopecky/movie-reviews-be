@@ -9,17 +9,17 @@ requests all the reviews in the reviews database)
 ============================================== */
 
 const getReviews = id => {
-    let query = db('movieReviews');
+    let query = db('moviereviews');
     if (id) query.where('id', Number(id)).first();
     return query;
 }
 
 const getReviewsByUserId = userId => {
-    return db('movieReviews').where('userId', Number(userId));
+    return db('moviereviews').where('userId', Number(userId));
 }
 
 const insert = review => {
-    return db('movieReviews')
+    return db('moviereviews')
         .insert(review)
         .then(([id]) => module.exports.getReviews(id))
         .catch(err => {
@@ -29,7 +29,7 @@ const insert = review => {
 
 const update = (id, editedReview) => {
     return (
-        db('movieReviews')
+        db('moviereviews')
             .where('id', id)
             .update(editedReview)
             // get the id if there are more than 0 records otherwise get 0
@@ -38,7 +38,7 @@ const update = (id, editedReview) => {
 }
 
 const remove = (id) => {
-    return db('movieReviews')
+    return db('moviereviews')
         .where('id', id)
         .del();
 };
