@@ -25,7 +25,7 @@ router.get('/current_user', async (req, res) => {
         const user = await getUsersById(req.user.id);
         res.status(200).json(user);
     } catch (error) {
-        res.status(404).json({Error: "No user found", error});
+        res.status(404).json({Error: "No user found",  error: error.message});
     } {
         
     }

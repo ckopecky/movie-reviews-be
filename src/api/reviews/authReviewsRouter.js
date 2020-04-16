@@ -24,10 +24,11 @@ const postReview = async (req, res) => {
     if (req.body.textBody && req.body.rating && userId) {
         // create a new review based on the caller body
         const newReview = await reviewsDb.insert(req.body);
+        console.log(newReview)
         try {
         // get reviews of the current user
         const currentUserReviews = await reviewsDb.getReviewsByUserId(userId);
-        // console.log('currentUserReviews: ', currentUserReviews);
+        console.log('currentUserReviews: ', currentUserReviews);
 
         // respond with a 201 on success
         res.status(201).json(currentUserReviews);
