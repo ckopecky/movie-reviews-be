@@ -16,7 +16,8 @@ process.env.REDIRECT_URI_PROD : process.env.REDIRECT_URI_DEV;
 //logout
 router.get('/logout', (req, res) => {
     req.logout();
-    res.redirect(serverURL);
+    console.log(successfulRedirect);
+    res.redirect(successfulRedirect);
 });
 
 //current user
